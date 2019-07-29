@@ -67,3 +67,12 @@ def cadastrar_ideia(request):
             return redirect('/sobre') 
 
     return render(request, 'ideias.html', {}) 
+
+def remover_ideia(request, id): #para não deletar da base 
+    ideia = ideia.objects.filter(id=id).first()
+    if ideia is not None:
+        ideia.ativo = False
+        ideia.save = True
+        return redirect ('/sobre')
+       # contexto {'msg': 'Sua ideia foi deletada'}
+       # return render(request, '/sobre', contexto)
